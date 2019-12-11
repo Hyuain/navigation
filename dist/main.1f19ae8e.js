@@ -246,9 +246,15 @@ $('input', '.search-from').on('keypress', function (e) {
 $('input', '.add-dialog').on('keypress', function (e) {
   e.stopPropagation();
 });
-$('#test').on('click', function () {
+$('#test').click(function () {
   localStorage.clear();
   location.reload();
+});
+$('input', '.search-form').focusin(function () {
+  $('.search-form').addClass('search-form-active');
+});
+$('input', '.search-form').focusout(function () {
+  $('.search-form').removeClass('search-form-active');
 });
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

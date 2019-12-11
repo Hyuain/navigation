@@ -1,4 +1,7 @@
-/* css reset */
+/*
+** CSS Reset
+*/
+
 * {
     box-sizing: border-box;
 }
@@ -28,7 +31,15 @@ img {
     max-height: 100%;
 }
 
-/* style */
+*:focus {
+    outline: none;
+}
+
+/*
+** style
+*/
+
+/* header */
 
 body {
     background-color: #eee;
@@ -45,31 +56,48 @@ body {
     }
 }
 
-.search-from {
-    display     : flex;
-    max-width   : 500px;
-    margin-left : auto;
-    margin-right: auto;
-}
-
-.search-from>input {
-    width        : 100%;
-    margin-right : 10px;
-    height       : 40px;
+.search-form {
+    display      : flex;
+    max-width    : 500px;
+    margin-left  : auto;
+    margin-right : auto;
     padding      : 0 10px;
-    border       : 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 20px;
+    background   : white;
+    box-shadow   : 0 1px 5px #bbb;
+    transition: box-shadow 0.5s;
+
 }
 
-.search-from>button {
-    white-space     : nowrap;
-    padding         : 0 26px;
-    border          : none;
-    border-radius   : 4px;
-    background-color: #1d78eb;
-    color           : white;
-    font-size       : 16px;
+.search-form>input {
+    width       : 100%;
+    margin-left : 10px;
+    margin-right: 10px;
+    height      : 40px;
+    border      : none;
+    background  : none;
+    font-size   : 16px;
 }
+
+.search-form>button {
+    white-space  : nowrap;
+    border       : none;
+    background   : none;
+    padding-right: 7px;
+    color        : #1d78eb;
+    font-size    : 20px;
+}
+
+.search-form>button:hover {
+    cursor: pointer;
+}
+
+.search-form-active {
+    box-shadow: 0 0px 5px #1d78eb;
+    transition: box-shadow 0.5s;
+}
+
+/* site-list */
 
 .global-main {
     max-width   : 900px;
@@ -205,6 +233,8 @@ body {
     color    : rgba(255, 255, 255, 0.9);
 }
 
+/* add-button */
+
 .site-list .add-button {
     width           : 160px;
     display         : flex;
@@ -240,7 +270,7 @@ body {
 .add-dialog {
     position     : absolute;
     background   : white;
-    box-shadow   : 0 2px 7px #aaa;
+    box-shadow   : 0 2px 5px #ccc;
     border-radius: 7px;
     top          : 50%;
     left         : 50%;
@@ -257,13 +287,13 @@ body {
 }
 
 .add-dialog .field-title {
-    font-size: 10px;
+    font-size: 15px;
     color    : #555
 }
 
-@media(max-width: 500px) {
+@media(min-width: 500px) {
     .add-dialog .field-title {
-        font-size: 15px;
+        font-size: 12px;
         color    : #555
     }
 }
@@ -274,6 +304,7 @@ body {
     border-radius: 4px;
     border       : none;
     background   : #f1f3f4;
+    font-size    : 16px;
 }
 
 .add-dialog .dialog-button {
@@ -284,16 +315,15 @@ body {
     margin         : 20px auto 10px;
 }
 
-
 .add-dialog #dialog-submit {
-    order           : 0;
     width           : 270px;
-    height          : 30px;
+    height          : 35px;
     margin-bottom   : 10px;
     border-radius   : 4px;
     background-color: #1d78eb;
     border          : none;
     color           : white;
+    font-size       : 16px;
 }
 
 .add-dialog #dialog-submit:hover {
@@ -301,11 +331,48 @@ body {
 }
 
 .add-dialog #dialog-close {
-    order           : 1;
     width           : 270px;
-    height          : 30px;
+    height          : 35px;
     border-radius   : 4px;
     background-color: white;
     border          : 1px solid #ccc;
     color           : #e63f2d;
+    font-size       : 16px;
+}
+
+.add-dialog #dialog-close:hover {
+    background-color: #f8faff;
+}
+
+@media(min-width: 500px) {
+    .add-dialog .dialog-button {
+        display        : flex;
+        flex-direction : row-reverse;
+        justify-content: start;
+        align-items    : center;
+        margin         : 20px 17px 10px;
+    }
+
+    .add-dialog #dialog-submit {
+        width           : 60px;
+        height          : 30px;
+        margin-bottom   : 0px;
+        margin-left     : 10px;
+        border-radius   : 4px;
+        background-color: #1d78eb;
+        border          : none;
+        color           : white;
+        font-size       : 13.3px;
+    }
+
+    .add-dialog #dialog-close {
+        width           : 60px;
+        height          : 30px;
+        border-radius   : 4px;
+        background-color: white;
+        border          : 1px solid #ccc;
+        color           : #e63f2d;
+        font-size       : 13.3px;
+    }
+
 }

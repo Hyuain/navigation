@@ -6,7 +6,7 @@
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Navigation</title>
+    <title>维生素导航</title>
     <style type="text/css">
         .icon {
             width: 1em;
@@ -21,9 +21,13 @@
 
 <body>
     <header class="global-header">
-        <form class="search-from" method="get" action="https://www.baidu.com/s">
-            <input type="text" name="wd">
-            <button type="submit">搜索</button>
+        <form class="search-form" method="get" action="https://www.baidu.com/s">
+            <input type="search" name="wd" placeholder="要搜索些什么呢？">
+            <button type="submit">
+                <svg class="icon">
+                    <use xlink:href="#icon-search"></use>
+                </svg>
+            </button>
         </form>
     </header>
     <main class=global-main>
@@ -59,8 +63,8 @@
             </div>
         </div>
     </section>
-    <button id="test">测试选项：清空 localStorage</button>
-    <script src="//at.alicdn.com/t/font_1551624_095vvnile3l.js"></script>
+    <button id="test">测试：清空 localStorage</button>
+    <script src="//at.alicdn.com/t/font_1551624_m3km7c8jaqa.js"></script>
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
     <script src="main.js"></script>
 </body>

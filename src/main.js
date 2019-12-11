@@ -157,7 +157,15 @@ $('input', '.add-dialog').on('keypress', (e) => {
     e.stopPropagation()
 })
 
-$('#test').on('click', () => {
+$('#test').click(() => {
     localStorage.clear()
     location.reload()
+})
+
+$('input','.search-form').focusin(()=>{
+    $('.search-form').addClass('search-form-active')
+})
+
+$('input','.search-form').focusout(()=>{
+    $('.search-form').removeClass('search-form-active')
 })
