@@ -118,18 +118,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"epB2":[function(require,module,exports) {
-var $siteList = $('.siteList');
+var $siteList = $('.site-list');
 var $lastLi = $siteList.find('li.last');
 var sites = JSON.parse(localStorage.getItem('sites'));
+/**
+ * 设置数据存储及初始化
+ */
+
 var hashMap = sites || [{
   logo: 'A',
   logoType: 'text',
+  name: 'Acfun',
   url: 'https://www.acfun.cn'
 }, {
   logo: 'B',
   logoType: 'text',
+  name: 'Bilibili',
   url: 'https://bilibili.com'
 }];
+/**
+ * 设置页面结构
+ */
 
 var simplifyUrl = function simplifyUrl(url) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
@@ -138,43 +147,114 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo, "</div>\n                <div class=\"link\">").concat(simplifyUrl(node.url), "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastLi);
+    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo, "</div>\n                <div class=\"name\">").concat(node.name, "</div>\n                <div class=\"pc-close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n                <div class=\"mobile-close-container\">\n                    <div class=\"mobile-close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-close\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        </li>")).insertBefore($lastLi);
     $li.on('click', function () {
       window.open(node.url, '_self');
     });
-    $li.on('click', '.close', function (e) {
+    $li.on('click', '.pc-close', function (e) {
       e.stopPropagation();
       hashMap.splice(index, 1);
       localStorage.setItem('sites', JSON.stringify(hashMap));
       render();
     });
+    $li.on('touchend', '.mobile-close', function (e) {
+      e.stopPropagation();
+      hashMap.splice(index, 1);
+      localStorage.setItem('sites', JSON.stringify(hashMap));
+      render();
+    });
+    $(document).on('touchstart', function (e) {
+      $('.mobile-close-container', $li).css('display', 'none');
+    });
+    $li.on({
+      touchstart: function touchstart(e) {
+        longClick = 0;
+        timeOutEvent = setTimeout(function () {
+          $('.mobile-close-container', $li).css('display', 'block');
+          longClick = 1;
+        }, 500);
+        e.preventDefault();
+      },
+      touchmove: function touchmove(e) {
+        clearTimeout(timeOutEvent);
+        timeOutEvent = 0;
+        e.preventDefault();
+      },
+      touchend: function touchend(e) {
+        clearTimeout(timeOutEvent);
+
+        if (timeOutEvent !== 0 && longClick === 0) {
+          window.open(node.url, '_self');
+        }
+      }
+    });
   });
 };
 
 render();
-$(".addButton").on('click', function () {
-  var url = window.prompt('请问你要添加的网址是？');
+/**
+ * 设置添加网站事件
+ */
+
+$(".add-button").on('click', function () {
+  $('#add-dialog-container').css('display', 'block');
+});
+$('#dialog-submit', '.add-dialog').on('click', function () {
+  var siteName = $("input[id='field-name']", '.add-dialog').val();
+  var url = $("input[id='field-url']", '.add-dialog').val();
+  $('input', '.add-dialog').val('');
+
+  if (!siteName) {
+    siteName = simplifyUrl(url);
+  }
+
+  if (!url) {
+    alert('请务必输入网址哦');
+    return;
+  }
 
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url;
   }
 
-  console.log(url);
   hashMap.push({
-    logo: simplifyUrl(url)[0],
+    name: siteName,
+    logo: siteName[0],
     logoType: 'text',
     url: url
   });
+  $('#add-dialog-container').css('display', 'none');
   render();
   localStorage.setItem('sites', JSON.stringify(hashMap));
 });
+$('#dialog-close', '.add-dialog').on('click', function () {
+  $('#add-dialog-container').css('display', 'none');
+  $('input', '.add-dialog').val('');
+});
+/**
+ * 设置快捷键事件
+ */
+
 $(document).on('keypress', function (e) {
   var key = e.key;
   console.log(key);
   window.open(hashMap[key - 1].url, '_self');
 });
-$('input', '.searchFrom').on('keypress', function (e) {
+$('input', '.search-from').on('keypress', function (e) {
   e.stopPropagation();
 });
+$('input', '.add-dialog').on('keypress', function (e) {
+  e.stopPropagation();
+});
+$('#test').click(function () {
+  localStorage.clear();
+  location.reload();
+});
+$('input', '.search-form').focusin(function () {
+  $('.search-form').addClass('search-form-active');
+});
+$('input', '.search-form').focusout(function () {
+  $('.search-form').removeClass('search-form-active');
+});
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.1de62954.js.map
+//# sourceMappingURL=main.b0d9764e.js.map
