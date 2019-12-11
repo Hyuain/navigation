@@ -45,14 +45,14 @@ body {
     }
 }
 
-.searchFrom {
+.search-from {
     display     : flex;
     max-width   : 500px;
     margin-left : auto;
     margin-right: auto;
 }
 
-.searchFrom>input {
+.search-from>input {
     width        : 100%;
     margin-right : 10px;
     height       : 40px;
@@ -61,7 +61,7 @@ body {
     border-radius: 4px;
 }
 
-.searchFrom>button {
+.search-from>button {
     white-space     : nowrap;
     padding         : 0 26px;
     border          : none;
@@ -71,59 +71,59 @@ body {
     font-size       : 16px;
 }
 
-.globalMain {
+.global-main {
     max-width   : 900px;
     margin-left : auto;
     margin-right: auto;
 }
 
-.siteList {
+.site-list {
     margin   : 20px;
     display  : flex;
     flex-wrap: wrap;
 }
 
 @media(max-width:500px) {
-    .siteList {
+    .site-list {
         justify-content: space-around;
     }
 }
 
 @media(min-width:500px) and (max-width:900px) {
-    .globalMain {
+    .global-main {
         max-width: 500px;
     }
 
-    .siteList {
+    .site-list {
         margin      : 0px;
         margin-right: -10px;
     }
 
-    .siteList>li {
+    .site-list>li {
         margin-right: 10px;
     }
 }
 
 @media(min-width:900px) {
-    .globalMain {
+    .global-main {
         max-width: 900px;
     }
 
-    .siteList {
+    .site-list {
         margin      : 0px;
         margin-right: -25px;
     }
 
-    .siteList>li {
+    .site-list>li {
         margin-right: 25px;
     }
 }
 
-.siteList>li {
+.site-list>li {
     margin-bottom: 10px;
 }
 
-.siteList .site {
+.site-list .site {
     width           : 160px;
     display         : flex;
     justify-content : center;
@@ -137,7 +137,7 @@ body {
     cursor          : pointer;
 }
 
-.siteList .site>.logo {
+.site-list .site>.logo {
     width          : 64px;
     height         : 64px;
     display        : flex;
@@ -147,19 +147,19 @@ body {
     text-transform : uppercase;
 }
 
-.siteList .site>.name {
+.site-list .site>.name {
     font-size : 14px;
     margin-top: 5px;
 }
 
-.siteList .site>.close {
+.site-list .site>.close {
     position: absolute;
     right   : 9px;
     top     : 5px;
     display : none;
 }
 
-.siteList .site:hover>.close {
+.site-list .site:hover>.close {
     position: absolute;
     right   : 9px;
     top     : 5px;
@@ -167,12 +167,12 @@ body {
     cursor  : default;
 }
 
-.siteList .site>.close .icon {
+.site-list .site>.close .icon {
     width : 15px;
     height: 15px;
 }
 
-.siteList .addButton {
+.site-list .add-button {
     width           : 160px;
     display         : flex;
     justify-content : center;
@@ -184,17 +184,17 @@ body {
     border-radius   : 4px;
 }
 
-.siteList .addButton .icon {
+.site-list .add-button .icon {
     width : 64px;
     height: 64px;
 }
 
-.siteList .addButton .text {
+.site-list .add-button .text {
     font-size : 14px;
     margin-top: 4px;
 }
 
-#addDialogWrapper {
+#add-dialog-container {
     position        : fixed;
     background-color: rgba(255, 255, 255, 0.5);
     height          : 100vh;
@@ -204,7 +204,7 @@ body {
     display         : none;
 }
 
-.addDialog {
+.add-dialog {
     position     : absolute;
     background   : white;
     box-shadow   : 0 2px 7px #aaa;
@@ -214,21 +214,21 @@ body {
     transform    : translateX(-50%) translateY(-50%);
 }
 
-.addDialog .dialog-title {
+.add-dialog .dialog-title {
     margin: 15px;
 }
 
-.addDialog .field-container {
+.add-dialog .field-container {
     margin: 15px;
     width : 270px;
 }
 
-.addDialog .field-title {
+.add-dialog .field-title {
     font-size: 10px;
     color    : #555
 }
 
-.addDialog .input-container input {
+.add-dialog .input-container input {
     padding      : 7px;
     width        : 100%;
     border-radius: 4px;
@@ -236,7 +236,7 @@ body {
     background   : #f1f3f4;
 }
 
-.addDialog .dialog-button {
+.add-dialog .dialog-button {
     display        : flex;
     flex-direction : column;
     justify-content: center;
@@ -245,7 +245,7 @@ body {
 }
 
 
-.addDialog #dialog-submit {
+.add-dialog #dialog-submit {
     order           : 0;
     width           : 270px;
     height          : 30px;
@@ -256,11 +256,11 @@ body {
     color           : white;
 }
 
-.addDialog #dialog-submit:hover {
+.add-dialog #dialog-submit:hover {
     background-color: #2c80ea;
 }
 
-.addDialog #dialog-close {
+.add-dialog #dialog-close {
     order           : 1;
     width           : 270px;
     height          : 30px;

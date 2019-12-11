@@ -118,20 +118,27 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   return newRequire;
 })({"main.js":[function(require,module,exports) {
-var $siteList = $('.siteList');
+var $siteList = $('.site-list');
 var $lastLi = $siteList.find('li.last');
 var sites = JSON.parse(localStorage.getItem('sites'));
+/**
+ * 设置数据存储及初始化
+ */
+
 var hashMap = sites || [{
   logo: 'A',
   logoType: 'text',
-  name: 'acfun',
+  name: 'Acfun',
   url: 'https://www.acfun.cn'
 }, {
   logo: 'B',
   logoType: 'text',
-  name: 'bilibili',
+  name: 'Bilibili',
   url: 'https://bilibili.com'
 }];
+/**
+ * 设置页面结构
+ */
 
 var simplifyUrl = function simplifyUrl(url) {
   return url.replace('https://', '').replace('http://', '').replace('www.', '').replace(/\/.*/, '');
@@ -154,24 +161,17 @@ var render = function render() {
 };
 
 render();
-$(".addButton").on('click', function () {
-  $('#addDialogWrapper').css('display', 'block');
+/**
+ * 设置添加网站事件
+ */
+
+$(".add-button").on('click', function () {
+  $('#add-dialog-container').css('display', 'block');
 });
-$(document).on('keypress', function (e) {
-  var key = e.key;
-  console.log(key);
-  window.open(hashMap[key - 1].url, '_self');
-});
-$('input', '.searchFrom').on('keypress', function (e) {
-  e.stopPropagation();
-});
-$('input', '.addDialog').on('keypress', function (e) {
-  e.stopPropagation();
-});
-$('#dialog-submit', '.addDialog').on('click', function (e) {
-  var siteName = $("input[id='field-name']", '.addDialog').val();
-  var url = $("input[id='field-url']", '.addDialog').val();
-  $('input', '.addDialog').val('');
+$('#dialog-submit', '.add-dialog').on('click', function () {
+  var siteName = $("input[id='field-name']", '.add-dialog').val();
+  var url = $("input[id='field-url']", '.add-dialog').val();
+  $('input', '.add-dialog').val('');
 
   if (!siteName) {
     siteName = simplifyUrl(url);
@@ -192,14 +192,28 @@ $('#dialog-submit', '.addDialog').on('click', function (e) {
     logoType: 'text',
     url: url
   });
-  $('#addDialogWrapper').css('display', 'none');
+  $('#add-dialog-container').css('display', 'none');
   render();
   localStorage.setItem('sites', JSON.stringify(hashMap));
 });
-$('#dialog-close', '.addDialog').on('click', function () {
-  $('#addDialogWrapper').css('display', 'none');
-  $('input', '.addDialog').val('');
-  console.log('clicked');
+$('#dialog-close', '.add-dialog').on('click', function () {
+  $('#add-dialog-container').css('display', 'none');
+  $('input', '.add-dialog').val('');
+});
+/**
+ * 设置快捷键事件
+ */
+
+$(document).on('keypress', function (e) {
+  var key = e.key;
+  console.log(key);
+  window.open(hashMap[key - 1].url, '_self');
+});
+$('input', '.search-from').on('keypress', function (e) {
+  e.stopPropagation();
+});
+$('input', '.add-dialog').on('keypress', function (e) {
+  e.stopPropagation();
 });
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];

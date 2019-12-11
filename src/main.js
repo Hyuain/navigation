@@ -1,20 +1,28 @@
-const $siteList = $('.siteList')
+const $siteList = $('.site-list')
 const $lastLi = $siteList.find('li.last')
 const sites = JSON.parse(localStorage.getItem('sites'))
+
+/**
+ * 设置数据存储及初始化
+ */
 
 const hashMap = sites || [
     {
         logo: 'A',
         logoType: 'text',
-        name: 'acfun',
+        name: 'Acfun',
         url: 'https://www.acfun.cn'
     }, {
         logo: 'B',
         logoType: 'text',
-        name: 'bilibili',
+        name: 'Bilibili',
         url: 'https://bilibili.com'
     }
 ]
+
+/**
+ * 设置页面结构
+ */
 
 const simplifyUrl = (url) => {
     return url.replace('https://', '')
@@ -52,10 +60,50 @@ const render = () => {
 
 render()
 
-$(".addButton")
+/**
+ * 设置添加网站事件
+ */
+
+$(".add-button")
     .on('click', () => {
-        $('#addDialogWrapper').css('display', 'block')
+        $('#add-dialog-container').css('display', 'block')
     })
+
+$('#dialog-submit', '.add-dialog').
+    on('click', () => {
+        let siteName = $(`input[id='field-name']`, '.add-dialog').val()
+        let url = $(`input[id='field-url']`, '.add-dialog').val()
+        $('input', '.add-dialog').val('')
+        if (!siteName) {
+            siteName = simplifyUrl(url)
+        }
+        if (!url) {
+            alert('请务必输入网址哦')
+            return
+        }
+        if (url.indexOf('http') !== 0) {
+            url = 'https://' + url
+        }
+        hashMap.push({
+            name: siteName,
+            logo: siteName[0],
+            logoType: 'text',
+            url: url
+        })
+        $('#add-dialog-container').css('display', 'none')
+        render()
+        localStorage.setItem('sites', JSON.stringify(hashMap))
+    })
+
+$('#dialog-close', '.add-dialog').
+    on('click', () => {
+        $('#add-dialog-container').css('display', 'none')
+        $('input', '.add-dialog').val('')
+    })
+
+/**
+ * 设置快捷键事件
+ */
 
 $(document).on('keypress', (e) => {
     const { key } = e
@@ -63,41 +111,10 @@ $(document).on('keypress', (e) => {
     window.open(hashMap[key - 1].url, '_self')
 })
 
-$('input', '.searchFrom').on('keypress', (e) => {
+$('input', '.search-from').on('keypress', (e) => {
     e.stopPropagation()
 })
 
-$('input', '.addDialog').on('keypress', (e) => {
+$('input', '.add-dialog').on('keypress', (e) => {
     e.stopPropagation()
-})
-
-$('#dialog-submit', '.addDialog').on('click', (e) => {
-    let siteName = $(`input[id='field-name']`, '.addDialog').val()
-    let url = $(`input[id='field-url']`, '.addDialog').val()
-    $('input', '.addDialog').val('')
-    if (!siteName) {
-        siteName = simplifyUrl(url)
-    }
-    if (!url) {
-        alert('请务必输入网址哦')
-        return
-    }
-    if (url.indexOf('http') !== 0) {
-        url = 'https://' + url
-    }
-    hashMap.push({
-        name: siteName,
-        logo: siteName[0],
-        logoType: 'text',
-        url: url
-    })
-    $('#addDialogWrapper').css('display', 'none')
-    render()
-    localStorage.setItem('sites', JSON.stringify(hashMap))
-})
-
-$('#dialog-close', '.addDialog').on('click', () => {
-    $('#addDialogWrapper').css('display', 'none')
-    $('input', '.addDialog').val('')
-    console.log('clicked')
 })
