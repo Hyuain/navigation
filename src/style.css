@@ -65,7 +65,7 @@ body {
     border-radius: 20px;
     background   : white;
     box-shadow   : 0 1px 5px #bbb;
-    transition   : box-shadow 0.5s;
+    transition   : box-shadow .2s;
 
 }
 
@@ -92,9 +92,9 @@ body {
     cursor: pointer;
 }
 
-.search-form-active {
+.search-form.active {
     box-shadow: 0 0px 5px #1d78eb;
-    transition: box-shadow 0.5s;
+    transition: box-shadow .2s;
 }
 
 /* site-list */
@@ -188,14 +188,11 @@ body {
 }
 
 .site-list .site>.pc-close {
-    position: absolute;
-    right   : 9px;
-    top     : 5px;
-    display : none;
+    display: none;
 }
 
 @media(min-width:500px) {
-    .site-list .site:hover>.pc-close {
+    .site-list .site>.pc-close {
         background-color: #ea4335;
         position        : absolute;
         right           : 0px;
@@ -207,13 +204,31 @@ body {
         display         : flex;
         justify-content : center;
         align-items     : center;
+        opacity         : 0;
+        transition      : opacity .3s;
     }
-}
 
-.site-list .site>.pc-close .icon {
-    color : white;
-    width : 15px;
-    height: 15px;
+    .site-list .site:hover>.pc-close {
+        opacity   : 1;
+        transition: opacity .2s;
+        transition: transform .3s;
+    }
+
+    .site-list .pc-close:hover {
+        transform : scale(1.1);
+        transition: transform .3s;
+    }
+
+    .site-list .pc-close:hover .icon {
+        transform : rotateZ(180deg);
+        transition: transform .4s;
+    }
+
+    .site-list .pc-close .icon {
+        color : white;
+        width : 15px;
+        height: 15px;
+    }
 }
 
 .site-list .site .mobile-close-container {
@@ -249,7 +264,7 @@ body {
 
 /* add-button */
 
-.site-list .add-button {
+#add-button {
     width           : 100px;
     height          : 100px;
     display         : flex;
@@ -257,16 +272,34 @@ body {
     align-items     : center;
     flex-direction  : column;
     background-color: white;
-    border          : 1px solid #ddd;
+    border          : 1px solid #b9daff;
     border-radius   : 50%;
+    transition      : background-color .3s;
 }
 
-.site-list .add-button .icon {
-    width : 50px;
-    height: 50px;
+#add-button .icon {
+    width     : 50px;
+    height    : 50px;
+    color     : #1d78eb;
+    transition: transform .4s;
 }
 
-.site-list .add-button .text {
+#add-button:hover,
+#add-button.active {
+    background-color: #1d78eb;
+    transition      : background-color .3s;
+    cursor          : pointer;
+}
+
+#add-button:hover .icon,
+#add-button .icon.active {
+    color     : white;
+    transform : rotateZ(90deg);
+    transition: color .2s;
+    transition: transform .4s;
+}
+
+#add-button .text {
     font-size : 14px;
     margin-top: 4px;
     display   : none;

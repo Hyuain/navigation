@@ -65,7 +65,7 @@ body {
     border-radius: 20px;
     background   : white;
     box-shadow   : 0 1px 5px #bbb;
-    transition: box-shadow 0.5s;
+    transition   : box-shadow .2s;
 
 }
 
@@ -92,9 +92,9 @@ body {
     cursor: pointer;
 }
 
-.search-form-active {
+.search-form.active {
     box-shadow: 0 0px 5px #1d78eb;
-    transition: box-shadow 0.5s;
+    transition: box-shadow .2s;
 }
 
 /* site-list */
@@ -103,6 +103,7 @@ body {
     max-width   : 900px;
     margin-left : auto;
     margin-right: auto;
+    color       : #202124;
 }
 
 .site-list {
@@ -113,37 +114,42 @@ body {
 
 @media(max-width:500px) {
     .site-list {
-        justify-content: space-around;
+        justify-content: space-evenly;
+    }
+
+    .site-list>li {
+        margin-left : 7px;
+        margin-right: 7px;
     }
 }
 
-@media(min-width:500px) and (max-width:900px) {
+@media(min-width:500px) and (max-width:960px) {
     .global-main {
-        max-width: 500px;
+        max-width: 460px;
     }
 
     .site-list {
         margin      : 0px;
-        margin-right: -10px;
+        margin-right: -20px;
     }
 
     .site-list>li {
-        margin-right: 10px;
+        margin-right: 20px;
     }
 }
 
-@media(min-width:900px) {
+@media(min-width:960px) {
     .global-main {
-        max-width: 900px;
+        max-width: 940px;
     }
 
     .site-list {
         margin      : 0px;
-        margin-right: -25px;
+        margin-right: -20px;
     }
 
     .site-list>li {
-        margin-right: 25px;
+        margin-right: 20px;
     }
 }
 
@@ -152,26 +158,27 @@ body {
 }
 
 .site-list .site {
-    width           : 160px;
+    width           : 100px;
+    height          : 100px;
     display         : flex;
     justify-content : center;
     flex-direction  : column;
     align-items     : center;
     background-color: white;
     border          : 1px solid #ddd;
-    border-radius   : 4px;
+    border-radius   : 50%;
     padding         : 20px 0;
     position        : relative;
     cursor          : pointer;
 }
 
 .site-list .site>.logo {
-    width          : 64px;
-    height         : 64px;
+    width          : 40px;
+    height         : 40px;
     display        : flex;
     justify-content: center;
     align-items    : center;
-    font-size      : 60px;
+    font-size      : 40px;
     text-transform : uppercase;
 }
 
@@ -181,25 +188,47 @@ body {
 }
 
 .site-list .site>.pc-close {
-    position: absolute;
-    right   : 9px;
-    top     : 5px;
-    display : none;
+    display: none;
 }
 
 @media(min-width:500px) {
-    .site-list .site:hover>.pc-close {
-        position: absolute;
-        right   : 9px;
-        top     : 5px;
-        display : block;
-        cursor  : default;
+    .site-list .site>.pc-close {
+        background-color: #ea4335;
+        position        : absolute;
+        right           : 0px;
+        top             : 0px;
+        cursor          : default;
+        width           : 25px;
+        height          : 25px;
+        border-radius   : 50%;
+        display         : flex;
+        justify-content : center;
+        align-items     : center;
+        opacity         : 0;
+        transition      : opacity .3s;
     }
-}
 
-.site-list .site>.pc-close .icon {
-    width : 15px;
-    height: 15px;
+    .site-list .site:hover>.pc-close {
+        opacity   : 1;
+        transition: opacity .2s;
+        transition: transform .3s;
+    }
+
+    .site-list .pc-close:hover {
+        transform : scale(1.1);
+        transition: transform .3s;
+    }
+
+    .site-list .pc-close:hover .icon {
+        transform : rotateZ(180deg);
+        transition: transform .4s;
+    }
+
+    .site-list .pc-close .icon {
+        color : white;
+        width : 15px;
+        height: 15px;
+    }
 }
 
 .site-list .site .mobile-close-container {
@@ -235,26 +264,45 @@ body {
 
 /* add-button */
 
-.site-list .add-button {
-    width           : 160px;
+#add-button {
+    width           : 100px;
+    height          : 100px;
     display         : flex;
     justify-content : center;
     align-items     : center;
     flex-direction  : column;
-    padding         : 20px 0;
     background-color: white;
-    border          : 1px solid #ddd;
-    border-radius   : 4px;
+    border          : 1px solid #b9daff;
+    border-radius   : 50%;
+    transition      : background-color .3s;
 }
 
-.site-list .add-button .icon {
-    width : 64px;
-    height: 64px;
+#add-button .icon {
+    width     : 50px;
+    height    : 50px;
+    color     : #1d78eb;
+    transition: transform .4s;
 }
 
-.site-list .add-button .text {
+#add-button:hover,
+#add-button.active {
+    background-color: #1d78eb;
+    transition      : background-color .3s;
+    cursor          : pointer;
+}
+
+#add-button:hover .icon,
+#add-button .icon.active {
+    color     : white;
+    transform : rotateZ(90deg);
+    transition: color .2s;
+    transition: transform .4s;
+}
+
+#add-button .text {
     font-size : 14px;
     margin-top: 4px;
+    display   : none;
 }
 
 #add-dialog-container {
@@ -377,4 +425,4 @@ body {
 
 }
 
-/*# sourceMappingURL=style.a8a6254c.css.map */
+/*# sourceMappingURL=style.82c43cc7.css.map */
