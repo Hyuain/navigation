@@ -125,6 +125,8 @@ const submit = () => {
     $('#add-dialog-container').fadeOut(200)
     render()
     localStorage.setItem('sites', JSON.stringify(hashMap))
+    $('#add-button').removeClass('active')
+    $('.icon','#add-button').removeClass('active')
 }
 
 $('#add-button').click(() => {
