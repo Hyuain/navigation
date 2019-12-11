@@ -39,21 +39,59 @@ const render = () => {
             <div class="site">
                 <div class="logo">${node.logo}</div>
                 <div class="name">${node.name}</div>
-                <div class="close">
+                <div class="pc-close">
                     <svg class="icon">
                         <use xlink:href="#icon-close"></use>
                     </svg>
                 </div>
+                <div class="mobile-close-container">
+                    <div class="mobile-close">
+                        <svg class="icon">
+                            <use xlink:href="#icon-close"></use>
+                        </svg>
+                    </div>
+                </div>
             </div>
+        </div>
         </li>`).insertBefore($lastLi)
         $li.on('click', () => {
             window.open(node.url, '_self')
         })
-        $li.on('click', '.close', (e) => {
+        $li.on('click', '.pc-close', (e) => {
             e.stopPropagation()
             hashMap.splice(index, 1)
             localStorage.setItem('sites', JSON.stringify(hashMap))
             render()
+        })
+        $li.on('touchend', '.mobile-close', (e) => {
+            e.stopPropagation()
+            hashMap.splice(index, 1)
+            localStorage.setItem('sites', JSON.stringify(hashMap))
+            render()
+        })
+        $(document).on('touchstart', (e) => {
+            $('.mobile-close-container', $li).css('display', 'none')
+        })
+        $li.on({
+            touchstart: function (e) {
+                longClick = 0
+                timeOutEvent = setTimeout(function () {
+                    $('.mobile-close-container', $li).css('display', 'block')
+                    longClick = 1
+                }, 500)
+                e.preventDefault()
+            },
+            touchmove: function (e) {
+                clearTimeout(timeOutEvent)
+                timeOutEvent = 0
+                e.preventDefault()
+            },
+            touchend: function (e) {
+                clearTimeout(timeOutEvent)
+                if (timeOutEvent !== 0 && longClick === 0) {
+                    window.open(node.url, '_self')
+                }
+            }
         })
     })
 }
@@ -117,4 +155,9 @@ $('input', '.search-from').on('keypress', (e) => {
 
 $('input', '.add-dialog').on('keypress', (e) => {
     e.stopPropagation()
+})
+
+$('#test').on('click', () => {
+    localStorage.clear()
+    location.reload()
 })

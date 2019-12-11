@@ -147,15 +147,46 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo, "</div>\n                <div class=\"name\">").concat(node.name, "</div>\n                <div class=\"close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n            </div>\n        </li>")).insertBefore($lastLi);
+    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo, "</div>\n                <div class=\"name\">").concat(node.name, "</div>\n                <div class=\"pc-close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n                <div class=\"mobile-close-container\">\n                    <div class=\"mobile-close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-close\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        </li>")).insertBefore($lastLi);
     $li.on('click', function () {
       window.open(node.url, '_self');
     });
-    $li.on('click', '.close', function (e) {
+    $li.on('click', '.pc-close', function (e) {
       e.stopPropagation();
       hashMap.splice(index, 1);
       localStorage.setItem('sites', JSON.stringify(hashMap));
       render();
+    });
+    $li.on('touchend', '.mobile-close', function (e) {
+      e.stopPropagation();
+      hashMap.splice(index, 1);
+      localStorage.setItem('sites', JSON.stringify(hashMap));
+      render();
+    });
+    $(document).on('touchstart', function (e) {
+      $('.mobile-close-container', $li).css('display', 'none');
+    });
+    $li.on({
+      touchstart: function touchstart(e) {
+        longClick = 0;
+        timeOutEvent = setTimeout(function () {
+          $('.mobile-close-container', $li).css('display', 'block');
+          longClick = 1;
+        }, 500);
+        e.preventDefault();
+      },
+      touchmove: function touchmove(e) {
+        clearTimeout(timeOutEvent);
+        timeOutEvent = 0;
+        e.preventDefault();
+      },
+      touchend: function touchend(e) {
+        clearTimeout(timeOutEvent);
+
+        if (timeOutEvent !== 0 && longClick === 0) {
+          window.open(node.url, '_self');
+        }
+      }
     });
   });
 };
@@ -214,6 +245,10 @@ $('input', '.search-from').on('keypress', function (e) {
 });
 $('input', '.add-dialog').on('keypress', function (e) {
   e.stopPropagation();
+});
+$('#test').on('click', function () {
+  localStorage.clear();
+  location.reload();
 });
 },{}],"../../../AppData/Local/Yarn/Data/global/node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
