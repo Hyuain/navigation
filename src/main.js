@@ -6,10 +6,12 @@ const hashMap = sites || [
     {
         logo: 'A',
         logoType: 'text',
+        name: 'acfun',
         url: 'https://www.acfun.cn'
     }, {
         logo: 'B',
         logoType: 'text',
+        name: 'bilibili',
         url: 'https://bilibili.com'
     }
 ]
@@ -19,7 +21,6 @@ const simplifyUrl = (url) => {
         .replace('http://', '')
         .replace('www.', '')
         .replace(/\/.*/, '')
-
 }
 
 const render = () => {
@@ -29,7 +30,7 @@ const render = () => {
         <li>
             <div class="site">
                 <div class="logo">${node.logo}</div>
-                <div class="link">${simplifyUrl(node.url)}</div>
+                <div class="name">${node.name}</div>
                 <div class="close">
                     <svg class="icon">
                         <use xlink:href="#icon-close"></use>
@@ -53,18 +54,7 @@ render()
 
 $(".addButton")
     .on('click', () => {
-        let url = window.prompt('请问你要添加的网址是？')
-        if (url.indexOf('http') !== 0) {
-            url = 'https://' + url
-        }
-        console.log(url)
-        hashMap.push({
-            logo: simplifyUrl(url)[0],
-            logoType: 'text',
-            url: url
-        })
-        render()
-        localStorage.setItem('sites', JSON.stringify(hashMap))
+        $('#addDialogWrapper').css('display', 'block')
     })
 
 $(document).on('keypress', (e) => {
@@ -72,6 +62,42 @@ $(document).on('keypress', (e) => {
     console.log(key)
     window.open(hashMap[key - 1].url, '_self')
 })
+
 $('input', '.searchFrom').on('keypress', (e) => {
     e.stopPropagation()
+})
+
+$('input', '.addDialog').on('keypress', (e) => {
+    e.stopPropagation()
+})
+
+$('#dialog-submit', '.addDialog').on('click', (e) => {
+    let siteName = $(`input[id='field-name']`, '.addDialog').val()
+    let url = $(`input[id='field-url']`, '.addDialog').val()
+    $('input', '.addDialog').val('')
+    if (!siteName) {
+        siteName = simplifyUrl(url)
+    }
+    if (!url) {
+        alert('请务必输入网址哦')
+        return
+    }
+    if (url.indexOf('http') !== 0) {
+        url = 'https://' + url
+    }
+    hashMap.push({
+        name: siteName,
+        logo: siteName[0],
+        logoType: 'text',
+        url: url
+    })
+    $('#addDialogWrapper').css('display', 'none')
+    render()
+    localStorage.setItem('sites', JSON.stringify(hashMap))
+})
+
+$('#dialog-close', '.addDialog').on('click', () => {
+    $('#addDialogWrapper').css('display', 'none')
+    $('input', '.addDialog').val('')
+    console.log('clicked')
 })
