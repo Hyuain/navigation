@@ -1,6 +1,8 @@
 ## 项目背景
 点击查看维生素导航的 [预览链接](http://hais-teatime.com/navigation/dist/index.html)
+
 这是一个基于开源项目进行学习，并自己实现、优化的一个导航页面，目前仍处于开发阶段
+
 目前因为处于开发和学习中，左下角设置了清除 localStorage 的按钮，将清除该网页的 localStorage，并重新加载网页
 
 ## 技术栈
