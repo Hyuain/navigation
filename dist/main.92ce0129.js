@@ -223,6 +223,8 @@ var submit = function submit() {
   $('#add-dialog-container').fadeOut(200);
   render();
   localStorage.setItem('sites', JSON.stringify(hashMap));
+  $('#add-button').removeClass('active');
+  $('.icon', '#add-button').removeClass('active');
 };
 
 $('#add-button').click(function () {
@@ -273,4 +275,4 @@ $('input', '.search-form').focusout(function () {
   $('.search-form').removeClass('active');
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.a07bab4b.js.map
+//# sourceMappingURL=main.92ce0129.js.map
