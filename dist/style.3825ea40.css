@@ -40,16 +40,67 @@ img {
 */
 
 /* header */
+html {
+    height  : 100%;
+    overflow: hidden;
+}
 
 body {
-    background-color: #eee;
+    height             : 100%;
+    overflow           : hidden;
+    background-repeat  : no-repeat;
+    background-size    : cover;
+    background-position: center;
+}
+
+body.img1 {
+    background-image: url(wallpaper-1.edae1add.jpg);
+}
+
+body.img2 {
+    background-image   : url(wallpaper-2.630e261e.jpg);
+    background-position: right;
+}
+
+body.img3 {
+    background-image: url(wallpaper-3.9272d14d.jpg);
+}
+
+body.img4 {
+    background-image: url(wallpaper-4.8c2f6534.jpg);
+}
+
+body.img5 {
+    background-image   : url(wallpaper-5.b8b1dea8.jpg);
+    background-position: top;
+}
+
+body.img6 {
+    background-image: url(wallpaper-6.c929b416.jpg);
+}
+
+body.img7 {
+    background-image: url(wallpaper-7.a13e2a61.jpg);
+}
+
+body.img8 {
+    background-image   : url(wallpaper-8.8fc7d62d.jpg);
+    background-position: center;
+}
+
+body.img9 {
+    background-image: url(wallpaper-9.00110246.jpg);
+}
+
+body.img10 {
+    background-image: url(wallpaper-10.160b3cb9.jpg);
 }
 
 .global-header {
     margin: 100px 20px 20px;
 }
 
-@media(min-width:500px) {
+@media(min-width:960px) {
     .global-header {
         margin-top   : 200px;
         margin-bottom: 60px;
@@ -165,11 +216,13 @@ body {
     flex-direction  : column;
     align-items     : center;
     background-color: white;
-    border          : 1px solid #ddd;
     border-radius   : 50%;
     padding         : 20px 0;
     position        : relative;
     cursor          : pointer;
+    box-shadow      : 0 0px 1px #b9daff;
+    transition      : box-shadow .3s;
+    transition      : color .2s;
 }
 
 .site-list .site>.logo {
@@ -180,6 +233,13 @@ body {
     align-items    : center;
     font-size      : 40px;
     text-transform : uppercase;
+}
+
+.site-list .site:hover {
+    box-shadow: 0 1px 5px #b9daff;
+    color     : #1d78eb;
+    transition: box-shadow .3s;
+    transition: color .2s;
 }
 
 .site-list .site>.name {
@@ -272,9 +332,9 @@ body {
     align-items     : center;
     flex-direction  : column;
     background-color: white;
-    border          : 1px solid #b9daff;
     border-radius   : 50%;
-    transition      : background-color .3s;
+    box-shadow      : 0 1px 1px #b9daff;
+    transition      : all .3s;
 }
 
 #add-button .icon {
@@ -287,7 +347,8 @@ body {
 #add-button:hover,
 #add-button.active {
     background-color: #1d78eb;
-    transition      : background-color .3s;
+    box-shadow      : 0 1px 5px #b9daff;
+    transition      : all .3s;
     cursor          : pointer;
 }
 
@@ -353,6 +414,13 @@ body {
     border       : none;
     background   : #f1f3f4;
     font-size    : 16px;
+    box-shadow   : 0 0 1px #f1f3f4;
+    transition   : box-shadow .3s;
+}
+
+.add-dialog .input-container input:focus {
+    box-shadow: 0 0 5px #1d78eb;
+    transition: box-shadow .3s;
 }
 
 .add-dialog .dialog-button {
@@ -425,4 +493,24 @@ body {
 
 }
 
-/*# sourceMappingURL=style.82c43cc7.css.map */
+/* about */
+
+.about {
+    position: fixed;
+    bottom  : 20px;
+    right   : 20px;
+}
+
+.about .change-background .icon {
+    font-size : 30px;
+    color     : rgba(255, 255, 255, 0.8);
+    transition: transform .5s;
+}
+
+.about .change-background:hover .icon {
+    transform : rotateZ(180deg);
+    transition: transform .5s;
+    cursor    : pointer;
+}
+
+/*# sourceMappingURL=style.3825ea40.css.map */

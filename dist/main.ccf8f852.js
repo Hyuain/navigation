@@ -274,5 +274,12 @@ $('input', '.search-form').focusin(function () {
 $('input', '.search-form').focusout(function () {
   $('.search-form').removeClass('active');
 });
+var backgroundIndex = 1;
+$('.change-background', '.about').click(function () {
+  $('body').removeClass("img".concat(backgroundIndex));
+  if (backgroundIndex === 10) backgroundIndex = 0;
+  backgroundIndex++;
+  $('body').addClass("img".concat(backgroundIndex));
+});
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.92ce0129.js.map
+//# sourceMappingURL=main.ccf8f852.js.map

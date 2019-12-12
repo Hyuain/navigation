@@ -126,13 +126,13 @@ const submit = () => {
     render()
     localStorage.setItem('sites', JSON.stringify(hashMap))
     $('#add-button').removeClass('active')
-    $('.icon','#add-button').removeClass('active')
+    $('.icon', '#add-button').removeClass('active')
 }
 
 $('#add-button').click(() => {
     $('#add-dialog-container').fadeIn(200)
     $('#add-button').addClass('active')
-    $('.icon','#add-button').addClass('active')
+    $('.icon', '#add-button').addClass('active')
 })
 
 $('#dialog-submit').click(() => {
@@ -151,7 +151,7 @@ $('#dialog-close').click(() => {
     $('#add-dialog-container').fadeOut(200)
     $('input', '.add-dialog').val('')
     $('#add-button').removeClass('active')
-    $('.icon','#add-button').removeClass('active')
+    $('.icon', '#add-button').removeClass('active')
 })
 
 /**
@@ -182,4 +182,13 @@ $('input', '.search-form').focusin(() => {
 
 $('input', '.search-form').focusout(() => {
     $('.search-form').removeClass('active')
+})
+
+let backgroundIndex = 1
+
+$('.change-background', '.about').click(() => {
+    $('body').removeClass(`img${backgroundIndex}`)
+    if (backgroundIndex === 10) backgroundIndex = 0
+    backgroundIndex++
+    $('body').addClass(`img${backgroundIndex}`)
 })
