@@ -8,15 +8,35 @@ const sites = JSON.parse(localStorage.getItem('sites'))
 
 const hashMap = sites || [
     {
-        name: 'Acfun',
-        logo: 'A',
-        url: 'https://www.acfun.cn',
-        ico: 'https://www.acfun.cn/favicon.ico'
+        name: 'OverAPI',
+        logo: 'O',
+        url: 'http://overapi.com/',
+        ico: 'http://overapi.com/static/images/overapi-logo.png'
     }, {
+        logo: 'M',
+        name: 'MDN',
+        url: 'https://developer.mozilla.org/zh-CN/',
+        ico: 'https://developer.mozilla.org/favicon.ico'
+    }, {
+        logo: 'V',
+        name: 'Validator',
+        url: 'http://validator.w3.org/',
+        ico: 'http://w3.org/favicon.ico'
+    },{
+        logo: 'I',
+        name: 'iconfont',
+        url: 'https://www.iconfont.cn/',
+        ico: 'https://imgs.91sotu.com/file/icon/qEPydkxQpVjAprM8QuaQptr1.png'
+    },{
+        logo: 'B',
+        name: 'BootCDN',
+        url: 'https://www.bootcdn.cn/',
+        ico: 'https://www.bootcdn.cn/assets/img/bootcdn.png'
+    },{
         logo: 'B',
         name: 'Bilibili',
-        url: 'https://bilibili.com',
-        ico: 'https://bilibili.com/favicon.ico'
+        url: 'https://www.bilibili.com/',
+        ico: 'https://www.bilibili.com/favicon.ico'
     }
 ]
 

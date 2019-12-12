@@ -137,12 +137,12 @@ body.img10 {
     padding-right: 7px;
     color        : #1d78eb;
     font-size    : 20px;
-    transition: transform .3s;
+    transition   : transform .3s;
 }
 
 .search-form>button:hover {
-    cursor: pointer;
-    transform: translateY(-10%);
+    cursor    : pointer;
+    transform : translateY(-10%);
     transition: transform .3s;
 }
 
@@ -220,7 +220,7 @@ body.img10 {
     align-items     : center;
     background-color: white;
     border-radius   : 50%;
-    padding        : 10px 0 10px;
+    padding         : 10px 0 10px;
     position        : relative;
     cursor          : pointer;
     box-shadow      : 0 1px 1px #b9daff;
@@ -239,8 +239,7 @@ body.img10 {
 }
 
 .site-list .site>.logo img {
-    width        : 40px;
-    height       : 40px;
+    width        : 100%;
     border-radius: 30%;
 }
 
@@ -253,13 +252,13 @@ body.img10 {
 }
 
 .site-list .site>.name {
-    font-size    : 14px;
-    margin-top   : 7px;
-    overflow     : hidden;
-    text-overflow: ellipsis;
-    white-space  : nowrap;
-    width        : 70px;
-    text-align: center;
+    font-size     : 14px;
+    margin-top    : 7px;
+    overflow      : hidden;
+    text-overflow : ellipsis;
+    white-space   : nowrap;
+    width         : 70px;
+    text-align    : center;
     vertical-align: center;
 }
 
@@ -529,4 +528,4 @@ body.img10 {
     cursor    : pointer;
 }
 
-/*# sourceMappingURL=style.e2506e5e.css.map */
+/*# sourceMappingURL=style.479085d6.css.map */
