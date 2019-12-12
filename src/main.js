@@ -8,15 +8,15 @@ const sites = JSON.parse(localStorage.getItem('sites'))
 
 const hashMap = sites || [
     {
-        logo: 'A',
-        logoType: 'text',
         name: 'Acfun',
-        url: 'https://www.acfun.cn'
+        logo: 'A',
+        url: 'https://www.acfun.cn',
+        ico: 'https://www.acfun.cn/favicon.ico'
     }, {
         logo: 'B',
-        logoType: 'text',
         name: 'Bilibili',
-        url: 'https://bilibili.com'
+        url: 'https://bilibili.com',
+        ico: 'https://bilibili.com/favicon.ico'
     }
 ]
 
@@ -37,7 +37,7 @@ const render = () => {
         const $li = $(`
         <li>
             <div class="site">
-                <div class="logo">${node.logo}</div>
+                <div class="logo"><img src="${node.ico}"></div>
                 <div class="name">${node.name}</div>
                 <div class="pc-close">
                     <svg class="icon">
@@ -93,6 +93,10 @@ const render = () => {
                 }
             }
         })
+        $li.find('img').on('error', () => {
+            $li.find('img').css('display', 'none')
+            $li.find('.logo').html(`${node.logo}`)
+        })
     })
 }
 
@@ -105,6 +109,7 @@ render()
 const submit = () => {
     let siteName = $(`input[id='field-name']`, '.add-dialog').val()
     let url = $(`input[id='field-url']`, '.add-dialog').val()
+    let ico = simplifyUrl(url)
     $('input', '.add-dialog').val('')
     if (!siteName) {
         siteName = simplifyUrl(url)
@@ -113,14 +118,17 @@ const submit = () => {
         alert('请务必输入网址哦')
         return
     }
+    if (ico.indexOf('http') !== 0) {
+        ico = 'https://' + ico
+    }
     if (url.indexOf('http') !== 0) {
         url = 'https://' + url
     }
     hashMap.push({
         name: siteName,
-        logo: siteName[0],
-        logoType: 'text',
-        url: url
+        logo: siteName[0].toUpperCase(),
+        url: url,
+        ico: ico + '/favicon.ico'
     })
     $('#add-dialog-container').fadeOut(200)
     render()

@@ -126,15 +126,15 @@ var sites = JSON.parse(localStorage.getItem('sites'));
  */
 
 var hashMap = sites || [{
-  logo: 'A',
-  logoType: 'text',
   name: 'Acfun',
-  url: 'https://www.acfun.cn'
+  logo: 'A',
+  url: 'https://www.acfun.cn',
+  ico: 'https://www.acfun.cn/favicon.ico'
 }, {
   logo: 'B',
-  logoType: 'text',
   name: 'Bilibili',
-  url: 'https://bilibili.com'
+  url: 'https://bilibili.com',
+  ico: 'https://bilibili.com/favicon.ico'
 }];
 /**
  * 设置页面结构
@@ -147,7 +147,7 @@ var simplifyUrl = function simplifyUrl(url) {
 var render = function render() {
   $siteList.find('li:not(.last').remove();
   hashMap.forEach(function (node, index) {
-    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\">".concat(node.logo, "</div>\n                <div class=\"name\">").concat(node.name, "</div>\n                <div class=\"pc-close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n                <div class=\"mobile-close-container\">\n                    <div class=\"mobile-close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-close\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        </li>")).insertBefore($lastLi);
+    var $li = $("\n        <li>\n            <div class=\"site\">\n                <div class=\"logo\"><img src=\"".concat(node.ico, "\"></div>\n                <div class=\"name\">").concat(node.name, "</div>\n                <div class=\"pc-close\">\n                    <svg class=\"icon\">\n                        <use xlink:href=\"#icon-close\"></use>\n                    </svg>\n                </div>\n                <div class=\"mobile-close-container\">\n                    <div class=\"mobile-close\">\n                        <svg class=\"icon\">\n                            <use xlink:href=\"#icon-close\"></use>\n                        </svg>\n                    </div>\n                </div>\n            </div>\n        </div>\n        </li>")).insertBefore($lastLi);
     $li.on('click', function () {
       window.open(node.url, '_self');
     });
@@ -188,6 +188,10 @@ var render = function render() {
         }
       }
     });
+    $li.find('img').on('error', function () {
+      $li.find('img').css('display', 'none');
+      $li.find('.logo').html("".concat(node.logo));
+    });
   });
 };
 
@@ -199,6 +203,7 @@ render();
 var submit = function submit() {
   var siteName = $("input[id='field-name']", '.add-dialog').val();
   var url = $("input[id='field-url']", '.add-dialog').val();
+  var ico = simplifyUrl(url);
   $('input', '.add-dialog').val('');
 
   if (!siteName) {
@@ -210,15 +215,19 @@ var submit = function submit() {
     return;
   }
 
+  if (ico.indexOf('http') !== 0) {
+    ico = 'https://' + ico;
+  }
+
   if (url.indexOf('http') !== 0) {
     url = 'https://' + url;
   }
 
   hashMap.push({
     name: siteName,
-    logo: siteName[0],
-    logoType: 'text',
-    url: url
+    logo: siteName[0].toUpperCase(),
+    url: url,
+    ico: ico + '/favicon.ico'
   });
   $('#add-dialog-container').fadeOut(200);
   render();
@@ -282,4 +291,4 @@ $('.change-background', '.about').click(function () {
   $('body').addClass("img".concat(backgroundIndex));
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.ccf8f852.js.map
+//# sourceMappingURL=main.37141688.js.map
