@@ -54,46 +54,46 @@ body {
 }
 
 body.img1 {
-  background-image: url(/images/wallpaper-1.jpg);
+  background-image: url(wallpaper-1.edae1add.jpg);
 }
 
 body.img2 {
-  background-image: url(/images/wallpaper-2.jpg);
+  background-image: url(wallpaper-2.630e261e.jpg);
   background-position: right;
 }
 
 body.img3 {
-  background-image: url(/images/wallpaper-3.jpg);
+  background-image: url(wallpaper-3.9272d14d.jpg);
 }
 
 body.img4 {
-  background-image: url(/images/wallpaper-4.jpg);
+  background-image: url(wallpaper-4.8c2f6534.jpg);
 }
 
 body.img5 {
-  background-image: url(/images/wallpaper-5.jpg);
+  background-image: url(wallpaper-5.b8b1dea8.jpg);
   background-position: top;
 }
 
 body.img6 {
-  background-image: url(/images/wallpaper-6.jpg);
+  background-image: url(wallpaper-6.c929b416.jpg);
 }
 
 body.img7 {
-  background-image: url(/images/wallpaper-7.jpg);
+  background-image: url(wallpaper-7.a13e2a61.jpg);
 }
 
 body.img8 {
-  background-image: url(/images/wallpaper-8.jpg);
+  background-image: url(wallpaper-8.8fc7d62d.jpg);
   background-position: center;
 }
 
 body.img9 {
-  background-image: url(/images/wallpaper-9.jpg);
+  background-image: url(wallpaper-9.00110246.jpg);
 }
 
 body.img10 {
-  background-image: url(/images/wallpaper-10.jpg);
+  background-image: url(wallpaper-10.160b3cb9.jpg);
 }
 
 .global-header {
@@ -527,3 +527,5 @@ body.img10 {
   transition: transform .5s;
   cursor: pointer;
 }
+
+/*# sourceMappingURL=style.31f0c9f0.css.map */

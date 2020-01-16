@@ -311,4 +311,4 @@ $('.change-background', '.about').click(function () {
   $('body').addClass("img".concat(backgroundIndex));
 });
 },{}]},{},["epB2"], null)
-//# sourceMappingURL=main.c25852f2.js.map
+//# sourceMappingURL=main.64d83c44.js.map
